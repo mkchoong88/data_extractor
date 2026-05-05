@@ -22,7 +22,8 @@ def process_document_gemini(file_name, file_bytes, mime_type, api_key, model_nam
     2. Attention (usually found under 'Attention:' or similar)
     3. Delivery Address (usually found under 'Delivery Address' or 'Deliver to' or 'Ship to'. IMPORTANT: Do not include the postcode or the country name. E.g. '163 Tanglin Road, Unit, #03-128 Tanglin Mall')
     4. Invoice Number (usually found near 'Invoice Number', 'Duplicate Tax Invoice INV/...'. IMPORTANT: Extract ONLY the last 4 digits of the invoice number. E.g. if it is 'SPG-2821' or 'INV/2026/2819', return only '2821' or '2819')
-    
+    5. Quantity (the quantity is considered valid only if the number is followed by 'Bottle'. Sum all the valid quantity. E.g. if it is '1 Bottle' and '1 Bottle', return only 2)
+
     Return the result strictly as a JSON array of objects. 
     Each object must have exactly these keys: "Company Name", "Attention", "Delivery Address", "Invoice Number".
     Do not include markdown blocks like ```json in the output, just raw JSON.
